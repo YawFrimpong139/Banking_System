@@ -24,4 +24,9 @@ public class CurrentAccount extends Account {
             System.out.println("Invalid Withdrawal amount");
         }
     }
+
+    public void calculateInterestRate(){
+        System.out.println("No interest to calculate");
+    }
+
 }

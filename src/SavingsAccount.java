@@ -2,9 +2,25 @@ import java.util.List;
 
 public class SavingsAccount extends Account {
     private final double MINIMUMBALANCE = 50.00;
+    private final double interestRate = 0.025;
 
     public SavingsAccount(String accountHolder, String accountNumber) {
         super(accountHolder, accountNumber);
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void calculateInterestRate() {
+        double currentBalance = getBalance();
+        if (currentBalance > MINIMUMBALANCE) {
+            double interest = currentBalance * (interestRate / 12); // Assuming monthly interest calculation
+            deposit(interest); // Use the deposit method to add interest
+            System.out.println("Interest of GHS " + String.format("%.2f", interest) + " applied to Savings Account #" + getAccountNumber());
+        } else {
+            System.out.println("Interest not applied to Savings Account #" + getAccountNumber() + " as balance is below the minimum.");
+        }
     }
 
     //Method to implement withdrawal functionality

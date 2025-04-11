@@ -67,7 +67,8 @@ public class Main {
             System.out.println("1. Deposit");
             System.out.println("2. Withdraw");
             System.out.println("3. View Transaction History");
-            System.out.println("4. Exit");
+            System.out.println("4. Calculate Interest Rate");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             int choice = getIntInput(input);
 
@@ -86,6 +87,17 @@ public class Main {
                     viewTransactionHistory(account, input);
                     break;
                 case 4:
+                    if (account instanceof SavingsAccount) {
+                        ((SavingsAccount) account).calculateInterestRate();
+                    } else if (account instanceof CurrentAccount) {
+                        ((CurrentAccount) account).calculateInterestRate(); // It will print "No interest to calculate"
+                    } else if (account instanceof FixedDepositAccount) {
+                        ((FixedDepositAccount) account).calculateInterestRate(); // It will check for maturity and calculate
+                    } else {
+                        System.out.println("Interest calculation not applicable for this account type.");
+                    }
+                    break;
+                case 5:
                     continueActions = false;
                     System.out.println("Exiting account actions for Account #" + account.getAccountNumber() + ".");
                     break;
